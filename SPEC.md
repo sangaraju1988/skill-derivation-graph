@@ -57,7 +57,7 @@ A derivation chain is a path of `DERIVED_FROM` edges. The *derivation type* of a
 
 ### 3.3 Identity
 
-A version is identified by the triple `(skill_id, version, content_hash)`. The `content_hash` is the SHA-256 of the normalised SKILL.md text: line endings normalised to LF, trailing whitespace stripped per line, exactly one trailing newline. Two files with the same normalised text have the same hash and are the same version content, whatever repository they sit in. This makes "is this a verbatim copy?" a hash comparison, not a judgement call.
+A version is identified by the triple `(skill_id, version, content_hash)`. The `content_hash` is the SHA-256 of the normalised SKILL.md text: line endings normalised to LF, trailing whitespace stripped per line, exactly one trailing newline, and the lineage keys `derived-from` and `derived-from-hash` removed from the YAML frontmatter (so that recording lineage on a verbatim copy does not change its identity). Two files with the same normalised text have the same hash and are the same version content, whatever repository they sit in. This makes "is this a verbatim copy?" a hash comparison, not a judgement call: a copy that records its parent's hash in `metadata.derived-from-hash` is `verbatim` if its own hash matches and `modified` otherwise, so the derivation type is computed rather than declared.
 
 ## 4. Provenance record schema
 

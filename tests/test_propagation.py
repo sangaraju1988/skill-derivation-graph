@@ -14,6 +14,7 @@ from skillgraph import (  # noqa: E402
     DerivationGraph,
     SkillVersion,
     check_before_load,
+    classify_derivation,
     hash_skill_text,
     propagate_fix,
 )
@@ -124,6 +125,25 @@ class TestHashing(unittest.TestCase):
 
     def test_different_content_changes_hash(self):
         self.assertNotEqual(hash_skill_text("a\n"), hash_skill_text("b\n"))
+
+    def test_lineage_keys_do_not_change_hash(self):
+        parent = "---\nname: doc-summarizer\nmetadata:\n  owner: alice\n---\n# Doc Summarizer\n"
+        copy = (
+            "---\nname: doc-summarizer\nmetadata:\n  owner: alice\n"
+            '  derived-from: "https://example.dev/skills/tree/3f2c9e1/doc-summarizer"\n'
+            f'  derived-from-hash: "{hash_skill_text(parent)}"\n'
+            "---\n# Doc Summarizer\n"
+        )
+        self.assertEqual(hash_skill_text(copy), hash_skill_text(parent))
+        self.assertEqual(classify_derivation(copy, hash_skill_text(parent)), "verbatim")
+
+    def test_edited_copy_is_classified_modified(self):
+        parent = "---\nname: s\n---\nDo X.\n"
+        fork = '---\nname: s\nmetadata:\n  derived-from-hash: "x"\n---\nDo X, then Y.\n'
+        self.assertEqual(classify_derivation(fork, hash_skill_text(parent)), "modified")
+
+    def test_lineage_keys_outside_frontmatter_are_hashed(self):
+        self.assertNotEqual(hash_skill_text("body\nderived-from: x\n"), hash_skill_text("body\n"))
 
 
 if __name__ == "__main__":
