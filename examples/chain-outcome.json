@@ -1,0 +1,37 @@
+{
+  "patch": {
+    "source_skill_id": "doc-summarizer",
+    "patched_version": "1.1.0"
+  },
+  "summary": {
+    "superseded": 1,
+    "stale-vulnerable": 1,
+    "stale-review": 1
+  },
+  "results": [
+    {
+      "skill_id": "doc-summarizer",
+      "version": "1.0.0",
+      "state": "superseded",
+      "hops": 0,
+      "load_decision": "warn-superseded",
+      "reason": "superseded by 1.1.0"
+    },
+    {
+      "skill_id": "doc-summarizer-copy",
+      "version": "1.0.0",
+      "state": "stale-vulnerable",
+      "hops": 1,
+      "load_decision": "block",
+      "reason": "descends from a pre-patch version through verbatim edges only; the vulnerability is inherited by construction"
+    },
+    {
+      "skill_id": "doc-summarizer-fork",
+      "version": "1.0.0",
+      "state": "stale-review",
+      "hops": 2,
+      "load_decision": "warn-review",
+      "reason": "descends from a pre-patch version through a modified edge; review whether the patch applies"
+    }
+  ]
+}
