@@ -1,5 +1,7 @@
 # Skill Derivation Graph
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23623206.svg)](https://doi.org/10.5281/zenodo.23623206)
+
 **A provenance layer for agent skills: who copied whom, and who is still running the old version.**
 
 Agent skills (SKILL.md-style definitions) are copied freely across repositories and agent harnesses, but a copy carries no record of where it came from or whether its source has since been patched. "Skill Constellations: Tracing the Supply Chain of Agent Skills on GitHub" (Seddik, UBC Okanagan, arXiv:2610.11169, 8 October 2026) cites the GitSkills dataset finding that half of all SKILL.md files on GitHub are verbatim copies of another file, and reports that only 11.1% of changes to a clone group reach every copy — so a fix to a source skill usually does not arrive downstream. This project proposes the missing layer: a derivation graph over skills, a small provenance record carried with each skill version, and a fix-propagation walk that marks descendants stale when a source is patched.
@@ -73,3 +75,11 @@ locally — a team can run the graph over its own skill corpus today.
 
 - All example data is synthetic. No real skills, authors, or organisations are represented.
 - The reference implementation is intentionally small: it demonstrates the semantics, it is not a production index. A production deployment needs a real derivation index, key management for signatures, and the harvesting protocol planned for v0.2.
+
+## Citation
+
+If you use or build on this work, please cite:
+
+> Sangaraju, V. M. (2026). *Skill Derivation Graph: A Provenance Layer for Agent Skills* (Specification v0.1). Zenodo. https://doi.org/10.5281/zenodo.23623206
+
+A machine-readable `CITATION.cff` is included (GitHub shows it as "Cite this repository").

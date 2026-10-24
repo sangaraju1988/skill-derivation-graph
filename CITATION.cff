@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use or build on this specification, please cite it as below."
+title: "Skill Derivation Graph: A Provenance Layer for Agent Skills (Specification v0.1)"
+type: software
+authors:
+  - family-names: Sangaraju
+    given-names: Venkata M.
+    affiliation: Independent Researcher
+doi: 10.5281/zenodo.23623206
+repository-code: "https://github.com/sangaraju1988/skill-derivation-graph"
+license: Apache-2.0
+version: "0.1"
+date-released: 2026-10-24
+keywords:
+  - agent skills
+  - SKILL.md
+  - provenance
+  - software supply chain
+  - fix propagation
